@@ -1,9 +1,8 @@
 {
-  "name": "fourthgame(multiplayer)",
+  "name": "4H racing",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
-  "type": "module",
   "scripts": {
     "start": "node server.js"
   },
