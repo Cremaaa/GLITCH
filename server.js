@@ -19,6 +19,12 @@ io.on('connection', function(socket) {
     players[socket.id] = {
         x:  10,
         y: 10,
+        cameraOffsetX: 0,
+        cameraOffsetY: 0,
+        cameraX: 0,
+        cameraY: 0
+        //sheet,
+        //rotation,
     };
 
     // Invia la posizione iniziale del giocatore appena connesso
@@ -28,6 +34,10 @@ io.on('connection', function(socket) {
     socket.on("player", (player) => {
         players[socket.id].x = player.x;
         players[socket.id].y = player.y;
+        players[socket.id].cameraOffsetX = player.cameraOffsetX;
+        players[socket.id].cameraOffsetY = player.cameraOffsetY;
+        players[socket.id].cameraX = player.cameraX;
+        players[socket.id].cameraY = player.cameraY;
         io.emit('aggiorna', players);
     });
 

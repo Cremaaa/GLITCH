@@ -35,6 +35,7 @@ responsive();
 
 const player = new Player();
 
+
 // Gestione degli input del giocatore
 document.addEventListener('keydown', (event) => {
 
@@ -48,23 +49,22 @@ function updateGame(){
     player.update();
 }
 
-function drawGame(){
-    player.draw(ctx);
-}
 
 function loop(){
     requestAnimationFrame(loop);
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     updateGame();
-    drawGame();
-    socket.emit("player", player);
+
     Object.keys(giocatori).forEach( id => {
         ctx.beginPath();
-        console.log()
-        ctx.rect(player.cameraOffsetX + (giocatori[id].x - player.x), player.cameraOffsetY + (giocatori[id].y - player.y), 40,40);
+        player.draw(ctx, giocatori[socket.id])
+        ctx.rect(giocatori[socket.id].cameraOffsetX + (giocatori[id].x - giocatori[socket.id].x), giocatori[socket.id].cameraOffsetY + (giocatori[id].y - giocatori[socket.id].y), 40,40);
+        console.log("x: " + (giocatori[socket.id].cameraOffsetX + (giocatori[id].x - giocatori[socket.id].x)))
         ctx.fill();
         ctx.closePath();
     })
+
+    socket.emit("player", player);
 }
 
 loop();

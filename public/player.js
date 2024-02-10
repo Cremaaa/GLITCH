@@ -82,15 +82,15 @@ export class Player {
         this.y += dy;
     }
 
-    draw(ctx) {
+    draw(ctx, p) {
                 // Draw the race map
-                ctx.drawImage(raceMap, this.cameraX, this.cameraY, this.mapWidth, this.mapHeight);
+                ctx.drawImage(raceMap, p.cameraX, p.cameraY, this.mapWidth, this.mapHeight);
         
                 // Save the current context state
                 ctx.save();
                 
                 // Translate and rotate the context for drawing the car
-                ctx.translate(this.cameraOffsetX, this.cameraOffsetY);
+                ctx.translate(p.cameraOffsetX, p.cameraOffsetY);
                 ctx.rotate((this.rotation * Math.PI) / 180); // Convert degrees to radians for rotation
                 ctx.drawImage(car, -this.width/2, -this.height/2, this.width, this.height); // Draw the car
                 
